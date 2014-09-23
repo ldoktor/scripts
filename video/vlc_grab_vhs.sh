@@ -1,0 +1,1 @@
+/usr/bin/cvlc v4l2:///dev/video1:input=1:width=720:height=576 --input-slave=alsa://plughw:1,0 --run-time 60 --sout='#transcode{vcodec=mp2v, vb=1800, acodec=mp2a, ab=128}:std{access=file, mux=mpeg1, dst=file_name1800.mpg}' vlc://quit
