@@ -1,0 +1,8 @@
+Když už jsi došel až sem, poradím ti ;-)
+
+Čtením knihy se pohybuješ skrz strukturu knihy. Pokud se ti něco stane, můžeš použít relativní adresu odkud jsi přišel a často si tak můžeš zachránit život.
+
+Vyzkoušej si to například tak, že dáš načíst stav '../'. Měl by jsi se objevit na předchozí stránce.
+
+Ale pozor, nehřeš na tuto vlastnost, dostaneš se na nadřazenou kapitolu a když je více možností, můžeš se ocitnout úplně někde jinde!
+

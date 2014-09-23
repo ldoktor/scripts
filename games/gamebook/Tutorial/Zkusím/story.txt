@@ -1,0 +1,5 @@
+Hody kostkou jsou jednoduché. Můžeš být vybídnut hodit si několika-hrannou kostkou, například 6k znamená 6-stěnná kostka. Pokud ji nemáš po ruce, můžeš zkusit příkaz 6k, 10k, 12k či random + požadovaný počet stěn kostky (random 100). 
+
+Věřím ti, proto nechám na tobě, jak se ve finále rozhodneš ;-)
+
+Hoď 6k:
