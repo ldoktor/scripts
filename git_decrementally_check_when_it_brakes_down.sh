@@ -1,0 +1,2 @@
+# Checkouts -1 git revision and executes autotest dropin tests until the message is not found
+AAA=1; while [ $AAA -eq 1 ] ; do git reset --hard dropin~1 ; sudo AUTOTEST_PATH=../../../ ./run -t qemu --no-downloads --no-cleanup --keep-guest-running -k --keep-image-between-tests --run-dropin && AAA=`cat logs/latest/debug.log | grep "ERROR dropin.hostname.sh -> TestError: Could not find test file dropin.py on testdirs" -c`; done
