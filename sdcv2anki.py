@@ -22,6 +22,8 @@ My usual workflow:
 5. start Anki -> Import -> plain text files & select the output.tsv
 6. set the separating character, enable HTML, enable update notes and fields
 7. press import and verify it was successful
+
+update EN_CS dict here http://slovnik.zcu.cz/online/index.php
 """
 from optparse import OptionParser
 import re
