@@ -40,7 +40,7 @@ done
 #exiftool -AllDates+="$shift" -IFD1:ModifyDate+="$shift" -FileModifyDate+="$shift" -overwrite_original_in_place -r .
 #exiftool '-FileName<CreateDate' -d IMG_%Y%m%d_%H%M%S_tata.%%e -overwrite_original_in_place -r .
 [ $OFFSET ] && exiftool -AllDates+="$OFFSET" -IFD1:ModifyDate+="$OFFSET" -FileModifyDate+="$OFFSET" -overwrite_original_in_place -r $*
-exiftool '-FileName<CreateDate' -d IMG_%Y%m%d_%H%M%S%%-c${SUFFIX}.%%e -overwrite_original_in_place $RECURSIVE $*
+exiftool '-FileName<CreateDate' -d "IMG_%Y%m%d_%H%M%S%%-c${SUFFIX}.%%e" -overwrite_original_in_place $RECURSIVE $*
 if [ $RESIZE ]; then
     IFS=`echo`
     if [ $RECURSIVE ]; then
