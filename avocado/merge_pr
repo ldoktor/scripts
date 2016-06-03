@@ -1,0 +1,7 @@
+#!/bin/sh -ex
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+update_branch
+[ "$1" ] && PR=$1 || read PR
+git fetch origin pull/$PR/head
+git merge --no-ff --log -S -m "Merging pull request $PR" FETCH_HEAD
+#git push origin $BRANCH

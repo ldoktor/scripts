@@ -1,0 +1,17 @@
+#!/bin/sh -ex
+# Store HEAD
+HEAD=$(git rev-parse HEAD)
+# Fetch PR
+[ "$1" ] && PR=$1 || { echo "Insert PR number:"; read PR; }
+git fetch origin +refs/pull/$PR/head
+GIT_URL=$(git config --get remote.origin.url)
+# WARN: This only works for github urls
+MERGE_COMMIT=$(curl https://api.github.com/repos/${GIT_URL:19}/pulls/$PR | python -c "import json; import sys; print json.loads(sys.stdin.read())['base']['sha'];")
+# Cherry-pick all patches from PR
+git diff $MERGE_COMMIT..FETCH_HEAD > /tmp/cherry_pick_a
+for SHA in $(git rev-list $MERGE_COMMIT..FETCH_HEAD --reverse); do
+    git cherry-pick $SHA -S
+done
+git diff $HEAD > /tmp/cherry_pick_b
+$(git config --get diff.tool) /tmp/cherry_pick_a /tmp/cherry_pick_b
+git push ldoktor HEAD -f

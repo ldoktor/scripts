@@ -1,0 +1,6 @@
+#!/bin/sh -ex
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "Enter to reset branch $BRANCH (interrupt by ctrl+c)"
+read
+git fetch
+git reset --hard origin/$BRANCH
