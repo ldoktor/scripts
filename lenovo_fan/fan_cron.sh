@@ -1,6 +1,8 @@
 #!/bin/bash
 #TEMP=`cat /proc/acpi/ibm/thermal | cut -f2 | cut -d' ' -f1`
 TEMP=`cat /sys/class/thermal/thermal_zone0/temp`
+[ -f /tmp/temperature_offset ] && TEMP=$(expr $TEMP + $(cat /tmp/temperature_offset))
+echo $TEMP
 if [ $TEMP -gt 85000 ]; then
     echo level full-speed > /proc/acpi/ibm/fan
 elif [ $TEMP -gt 70000 ]; then
