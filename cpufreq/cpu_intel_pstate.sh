@@ -10,3 +10,4 @@ else
     echo 100 | sudo tee /sys/devices/system/cpu/intel_pstate/max_perf_pct
     echo 0 | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
 fi
+notify-send --hint int:transient:1 "CPU speed set to $1"
