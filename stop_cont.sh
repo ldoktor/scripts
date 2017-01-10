@@ -1,5 +1,5 @@
 #!/bin/bash
-PROGRAMS="firefox java plugin-container qemu qemu-kvm gnome-software empathy empathy-chat skype"
+PROGRAMS="firefox java plugin-container qemu qemu-kvm gnome-software empathy empathy-chat skype pidgin"
 if [ -f /tmp/stop_cont ]; then
     for PROGRAM in $PROGRAMS; do
         killall -SIGCONT $PROGRAM &>/dev/null
