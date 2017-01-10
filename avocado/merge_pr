@@ -8,5 +8,5 @@ if [ "$PR" -eq "$PR" ] 2>/dev/null; then
 else
     LOCAL_BRANCH=$PR
 fi
-git merge --no-ff --log -S -m "Merging pull request $PR" $LOCAL_BRANCH
+git merge --no-ff --log -S -m "Merging pull request $PR" -m "Signed-off-by: $(git config --get user.name) <$(git config --get user.email)>" $LOCAL_BRANCH
 #git push origin $BRANCH
