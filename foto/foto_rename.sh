@@ -45,11 +45,11 @@ if [ $RESIZE ]; then
     IFS=`echo`
     if [ $RECURSIVE ]; then
         for FILE in `find $* -type f`; do
-            convert "$FILE" --resize $RESIZE "$FILE"
+            convert "$FILE" -resize $RESIZE "$FILE"
         done
     else
         for FILE in $*; do
-            [ -f "$FILE" ] && convert "$FILE" --resize "$RESIZE" "$FILE"
+            [ -f "$FILE" ] && convert "$FILE" -resize "$RESIZE" "$FILE"
         done
     fi
     unset IFS
