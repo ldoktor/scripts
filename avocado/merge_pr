@@ -9,4 +9,6 @@ else
     LOCAL_BRANCH=$PR
 fi
 git merge --no-ff --log -S -m "Merging pull request $PR" -m "Signed-off-by: $(git config --get user.name) <$(git config --get user.email)>" $LOCAL_BRANCH
+#make check-full
+#make spell
 #git push origin $BRANCH

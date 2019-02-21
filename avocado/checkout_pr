@@ -1,3 +1,4 @@
 #!/bin/sh -xe
-git fetch origin pull/$1/head
+[ "$2" ] && ORIGIN="$2" || ORIGIN=origin
+git fetch $ORIGIN pull/$1/head
 git checkout FETCH_HEAD
