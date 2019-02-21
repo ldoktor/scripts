@@ -19,5 +19,5 @@ run $RSYNC "/home/medic/Docs" "$TARGET/ldoktor"
 run $RSYNC "/home/medic/Work" "$TARGET/ldoktor"
 # Treating only hidden files from home is a bit harder...
 run echo $RSYNC HIDDEN FILES OF HOME
-find /home/medic -maxdepth 1 -name '.*' -printf %P\\0 | $RSYNC --files-from=- --from0 /home/medic "$TARGET/ldoktor/"
+find /home/medic -maxdepth 1 -name '.*' -printf %P\\0 | $RSYNC --exclude ".cache" --files-from=- --from0 /home/medic "$TARGET/ldoktor/"
 sync
