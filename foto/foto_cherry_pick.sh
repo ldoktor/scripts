@@ -18,8 +18,8 @@ find . -type d -print0 | while read -d $'\0' DIR; do
             TARGET=$(readlink -e "$TARGET")
             if [ "$SIZE" ]; then
                 # Try to resize the pict, if fails proceed with copy
-                echo convert "$FILE" -resize "$SIZE" "$TARGET/$(basename "$FILE")"
-                convert "$FILE" -resize "$SIZE" "$TARGET/$(basename "$FILE")" && continue
+                echo convert "$FILE" -resize "$SIZE" -quality 50 "$TARGET/$(basename "$FILE")"
+                convert "$FILE" -resize "$SIZE" -quality 50 "$TARGET/$(basename "$FILE")" && continue
             fi
             echo cp "'$FILE' '$TARGET'"
             cp "$FILE" "$TARGET"
