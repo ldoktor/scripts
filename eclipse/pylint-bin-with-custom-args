@@ -1,0 +1,13 @@
+#!/bin/sh
+# This modifies the pydevd msg-template to include msg_id and workarounds the
+# issue where lines with brackets contain no msg.
+
+# Print args for debugging purposes
+echo "$*"
+# Old way
+#pylint "$@" --msg-template='{C}:{line:3d},{column:2d}: {msg_id} {msg} ({symbol})'
+
+# There is a regexp issue which is matching the full description in case it contains brackets so:
+#     'R: 2, 0: () "R0903 Too few public methods (1/2)'
+# results in empty message. Let's replace all () brackets with [] brackets
+pylint "$@" --msg-template='{C}:{line:3d},{column:2d}: ( {msg_id}:{msg}' | python3 -c 'import sys; print("\n".join("%s () %s" % (_[0], _[1].replace("(", "[").replace(")", "]")) for _ in (line.split("(", 1) for line in sys.stdin.readlines() if "(" in line)))'
