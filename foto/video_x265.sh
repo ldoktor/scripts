@@ -44,6 +44,10 @@ convert() {
         fi
         # Do the conversion
         echo "Processing $1"
+        # diit - doporučení
+        # $ ./fffmpeg -i INPUT -map 0:v -map 0:a -c:v libx265 -crf 32 -c:a libopus -compression_level 10 -b:a 80k -vbr on OUTPUT.mkv
+        # možné přidat: "-vf scale=960x540:flags=lanczos"
+        # moje testované
         ffmpeg -nostdin -i "$1" -c:v libx265 -preset veryslow -crf $CRF -c:a aac -b:a 128k "$FILE.x265.mp4" &> convert.log
         if [ ${PIPESTATUS[0]} -ne 0 ]; then
             cat convert.log

@@ -1,0 +1,12 @@
+#!/bin/bash
+/etc/init.d/iptables stop
+iptables=/sbin/iptables
+INET_IP=147.229.216.13
+INET_IFACE=eth1
+FW_IP=192.168.122.254
+
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+$iptables -t nat -A POSTROUTING -o $INET_IFACE -j MASQUERADE
+#$iptables -A INPUT -s $FW_IP -j ACCEPT
+$iptables -t nat -A PREROUTING -d $INET_IP -j DNAT --to-destination $FW_IP

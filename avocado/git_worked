@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ "$#" -lt 4 ]; then
+    echo "Usage: $0 AUTHOR SINCE UNTIL PATH [PATH...]"
+fi
+
+AUTHOR=$1
+SINCE=$2
+UNTIL=$3
+shift 3
+
+for AAA in "$@"; do
+    [ -e "$AAA/.git" ] || continue
+    echo "$AAA"
+    pushd "$AAA" >/dev/null
+    git fetch
+    OUT="$(git log --since "$SINCE" --until "$UNTIL" --author "$AUTHOR" --no-merges --oneline origin/main 2>/dev/null)" || OUT="$(git log --since "$SINCE" --until "$UNTIL" --author "$AUTHOR" --no-merges --oneline origin/master 2>/dev/null)" || echo "FAILED TO GET"
+    [ -n "$OUT" ] && echo "$OUT" 1>&2 && echo "$OUT" | wc
+    popd &>/dev/null
+done
